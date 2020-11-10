@@ -1,0 +1,23 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+#long user host working dir
+#PS1='\[\033[01;36m\]\u ֍  \h \[\033[01;34m\]\w \[\033[01;33m\]» \[\033[00m\]'
+
+#minimal workin dir
+#PS1='\W\$ '
+
+#user at working dir
+#PS1='\[\033[01;32m\]\u at \[\033[01;35m\]\w \[\033[01;36m\]» \[\033[00m\]'
+#minimalest
+PS1='\[\033[01;35m\]\w \[\033[01;36m\]» \[\033[00m\]'
+(cat .config/wpg/sequences &)
+
+##fzf
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
