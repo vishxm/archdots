@@ -1,0 +1,132 @@
+[bar/mybar]
+font-0 = Inconsolata-Bold:size=12
+font-1 = Iosevka-Bold:size=12
+margin-top = 10
+modules-right = wireless-network battery powermenu
+modules-center = date
+fixed-center = true
+modules-left = i3
+wm-restack = i3
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+wrapping-scroll = false
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+module-margin-top = 2
+module-margin-bottom = 2
+override-redirect = true
+width = 99%
+height = 40
+offset-y = 10
+offset-x = 0.5%
+background = #10100f
+foreground = #8f99a5
+
+[global/wm]
+margin-top = 10
+margin-bottom = 0
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %A, %d %B '%y 
+time = %H:%M:%S
+date-alt = %a %d/%m/%y
+time-alt = %H:%M
+label = %time%   %date%
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-padding = 2
+
+label-close = ⏼
+label-open-foreground = #EAD5A5
+label-open = ⏻
+label-close-foreground = #8EB1D5
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = #9E9CAA
+
+menu-0-0 = reboot 
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+menu-0-2 = log off
+menu-0-2-exec = menu-open-3
+
+menu-1-1 = cancel
+menu-1-1-exec = menu-open-0
+menu-1-0 = reboot
+menu-1-0-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = log off
+menu-3-0-exec = pkill -KILL -u $USER
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+label-charging = :) %percentage%%
+label-discharging = %percentage%%
+
+[module/wireless-network]
+type = internal/network
+interface = wlan0
+interval = 3.0
+format-connected = <label-connected>
+label-connected = %essid%
+format-disconnected = <label-disconnected>
+label-disconnected = no wifi
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+format = <label> 
+label = CPU: %percentage%%
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+
+label-focused = %index%
+label-focused-foreground = #10100f
+label-focused-background = #EAD5A5
+label-focused-underline = #D4B2AD
+label-focused-padding = 4
+
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+label-visible = %index%
+label-visible-underline = #D4B2AD
+label-visible-padding = 4
+
+label-urgent = %index%
+label-urgent-foreground = #10100f
+label-urgent-background = #D4B2AD
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 1 
+label-separator-foreground = #9E9CAA
