@@ -3,9 +3,9 @@ font-0 = Inconsolata-Bold:size=12
 font-1 = Iosevka-Bold:size=12
 margin-top = 10
 modules-right = wireless-network battery powermenu
-modules-center = date
+modules-center = i3
 fixed-center = true
-modules-left = i3
+modules-left = date
 wm-restack = i3
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -21,21 +21,32 @@ width = 99%
 height = 40
 offset-y = 10
 offset-x = 0.5%
-background = #10100f
-foreground = #8f99a5
+background = #0f1212
+foreground = #e9e9e9
+bottom = true
 
 [global/wm]
 margin-top = 10
 margin-bottom = 0
 
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+fomart = <bar>
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
+
 [module/date]
 type = internal/date
 interval = 1.0
-date = %A, %d %B '%y 
-time = %H:%M:%S
-date-alt = %a %d/%m/%y
-time-alt = %H:%M
-label = %time%   %date%
+date-alt = %A, %d %B '%y 
+time-alt = %H:%M:%S
+date = %a %d/%m/%y
+time = %H:%M
+label = %time%  %date%
 
 [module/powermenu]
 type = custom/menu
@@ -45,33 +56,33 @@ expand-right = false
 format-padding = 2
 
 label-close = ⏼
-label-open-foreground = #EAD5A5
+label-open-foreground = #f07f7f
 label-open = ⏻
-label-close-foreground = #8EB1D5
+label-close-foreground = #ed9a9a
 label-separator = |
 label-separator-padding = 2
-label-separator-foreground = #9E9CAA
+label-separator-foreground = #e9e9e9
 
-menu-0-0 = reboot 
+menu-0-0 = Reboot 
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = Power Off
 menu-0-1-exec = menu-open-2
-menu-0-2 = log off
+menu-0-2 = Log Off
 menu-0-2-exec = menu-open-3
 
-menu-1-1 = cancel
+menu-1-1 = Cancel
 menu-1-1-exec = menu-open-0
-menu-1-0 = reboot
+menu-1-0 = Reboot
 menu-1-0-exec = reboot
 
-menu-2-0 = power off
+menu-2-0 = Power off
 menu-2-0-exec = poweroff
-menu-2-1 = cancel
+menu-2-1 = Cancel
 menu-2-1-exec = menu-open-0
 
-menu-3-0 = log off
+menu-3-0 = Log off
 menu-3-0-exec = pkill -KILL -u $USER
-menu-3-1 = cancel
+menu-3-1 = Cancel
 menu-3-1-exec = menu-open-0
 
 
@@ -85,12 +96,22 @@ format-discharging = <label-discharging>
 label-charging = :) %percentage%%
 label-discharging = %percentage%%
 
+[module/i3-volume]
+type = custom/script
+tail = true
+label = %output%
+exec = ~/i3-volume/volume listen "%i %v %p\n"
+scroll-up = ~/i3-volume/volume up
+scroll-down = ~/i3-volume/volume down
+click-left = ~/i3-volume/volume mute
+click-right = exec pavucontrol &
+
 [module/wireless-network]
 type = internal/network
 interface = wlan0
 interval = 3.0
 format-connected = <label-connected>
-label-connected = %essid%
+label-connected = %downspeed%
 format-disconnected = <label-disconnected>
 label-disconnected = no wifi
 
@@ -109,24 +130,24 @@ enable-scroll = true
 wrapping-scroll = false
 
 label-focused = %index%
-label-focused-foreground = #10100f
-label-focused-background = #EAD5A5
-label-focused-underline = #D4B2AD
+label-focused-foreground = #9ef0a5
+label-focused-background = #0f1212
+label-focused-underline = #94dae0
 label-focused-padding = 4
 
 label-unfocused = %index%
-label-unfocused-padding = 2
+label-unfocused-padding = 4
 
 label-visible = %index%
-label-visible-underline = #D4B2AD
+label-visible-underline = #7ff088
 label-visible-padding = 4
 
 label-urgent = %index%
-label-urgent-foreground = #10100f
-label-urgent-background = #D4B2AD
+label-urgent-foreground = #7facf0
+label-urgent-background = #0f1212
 label-urgent-padding = 4
 
 ; Separator in between workspaces
-label-separator = |
-label-separator-padding = 1 
-label-separator-foreground = #9E9CAA
+;label-separator = |
+;label-separator-padding = 1 
+;label-separator-foreground = #f07f7f

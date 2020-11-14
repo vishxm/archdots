@@ -56,7 +56,7 @@ bindsym $mod+d exec "rofi -modi window,drun,run -show drun -sidebar-mode -termin
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
-bindsym $mod+l focus up
+#bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
@@ -199,18 +199,36 @@ bindsym $mod+r mode "resize"
 
 # custom
 
+# betterlockscreen 
+bindsym $mod+l exec "betterlockscreen -l dimblur -t 'Vishwas has locked this!'"
+
+# polybar
+exec_always ~/.config/polybar/launch.sh &
+
+# picom
+exec_always picom &
+
+# dunst
+exec_always dunst &
+
+##playerctl 
+
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 #bindsym  $mod+i bar mode toggle
 
 # wpg floating
 for_window [class="Wpg" instance="wpg"] floating enable 
 for_window [class="Lxappearance" instance="lxappearance"] floating enable
+assign [class="Spotify"] $ws10
 
 #borders
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 #inner outer gaps
 gaps inner 10
-gaps top 50
+gaps bottom 50
 
 set $mode_gaps Gaps : (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps : +|-|0 (local), Shift + +|-|0 (global)
@@ -250,17 +268,17 @@ mode "$mode_gaps_outer" {
 	bindsym Escape mode "default"
 }
 
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.focused          #ead5a5 #ead5a5 #ffffff #ead5a5   #9ef0a5
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #131717
+client.unfocused        #333333 #222222 #888888 #292d2e   #0f1212
+client.urgent           #2f343a #900000 #ffffff #900000   #ed9a9a
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #98b9eb
 
 client.background       #ffffff
 
-set $mode_prompt_ss Save : (y) yes, (n) no
-set $mode_type_ss_y Type (save) : (w) window, (f) fullscreen
-set $mode_type_ss_n Type (not save) : (w) window, (f) fullscreen
+set $mode_prompt_ss Save Screenshot: (y) yes, (n) no
+set $mode_type_ss_y Type (save) : (s) selection, (w) window, (f) fullscreen
+set $mode_type_ss_n Type (not save) : (s) selection, (w) window, (f) fullscreen
 
 bindsym Print mode "$mode_prompt_ss"
 
@@ -272,7 +290,7 @@ mode "$mode_prompt_ss" {
 }
 
 mode "$mode_type_ss_y" {
-#    bindsym s       exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f'"
+    bindsym s --release exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f'"
     bindsym w       exec "scrot -u -e 'xclip -selection clipboard -t image/png < $f'"
     bindsym f       exec "scrot -e 'xclip -selection clipboard -t image/png < $f'"
     
@@ -281,11 +299,14 @@ mode "$mode_type_ss_y" {
 }
 
 mode "$mode_type_ss_n" {
-#    bindsym s       exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f && rm $f'"
+    bindsym s --release exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f && rm $f'"
     bindsym w       exec "scrot -u -e 'xclip -selection clipboard -t image/png < $f && rm $f'"
     bindsym f       exec "scrot -e 'xclip -selection clipboard -t image/png < $f && rm $f'"
 
     bindsym Return  mode "default"
     bindsym Escape  mode "default"
 }
+
+#!/usr/bin/env bash
+#exec --no-startup-id ~/.config/wpg/wp_init.sh
 
