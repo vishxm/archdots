@@ -2,6 +2,7 @@
 font-0 = Inconsolata-Bold:size=12
 font-1 = Iosevka-Bold:size=12
 margin-top = 10
+margin-bottom = 10
 modules-right = wireless-network battery powermenu
 modules-center = i3
 fixed-center = true
@@ -17,10 +18,10 @@ module-margin-right = 2
 module-margin-top = 2
 module-margin-bottom = 2
 override-redirect = true
-width = 99%
-height = 40
-offset-y = 10
-offset-x = 0.5%
+width = 100%
+height = 45
+offset-y = 0
+offset-x = 0
 background = #0f1212
 foreground = #e9e9e9
 bottom = true
@@ -61,7 +62,7 @@ label-open = ⏻
 label-close-foreground = #ed9a9a
 label-separator = |
 label-separator-padding = 2
-label-separator-foreground = #e9e9e9
+label-separator-foreground = #98b9eb
 
 menu-0-0 = Reboot 
 menu-0-0-exec = menu-open-1
@@ -130,22 +131,22 @@ enable-scroll = true
 wrapping-scroll = false
 
 label-focused = %index%
-label-focused-foreground = #9ef0a5
+label-focused-foreground = #f07f7f
 label-focused-background = #0f1212
 label-focused-underline = #94dae0
-label-focused-padding = 4
+label-focused-padding = 2
 
 label-unfocused = %index%
-label-unfocused-padding = 4
+label-unfocused-padding = 2
 
 label-visible = %index%
 label-visible-underline = #7ff088
-label-visible-padding = 4
+label-visible-padding = 2
 
 label-urgent = %index%
 label-urgent-foreground = #7facf0
 label-urgent-background = #0f1212
-label-urgent-padding = 4
+label-urgent-padding = 2
 
 ; Separator in between workspaces
 ;label-separator = |
