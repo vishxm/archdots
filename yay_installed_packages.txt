@@ -1,10 +1,8 @@
-betterlockscreen 3.0.1-6
-bpytop 1.0.50-1
 cava 0.7.3-1
-i3lock-color 2.12.c.5-1
-pfetch-git r358.754d6c6-1
+gotop 4.0.0-1
 picom-ibhagwan-git 1383_Next.102.g44b4970_2020.08.03-1
 polybar 3.4.3-2
+spicetify-cli 1.1.0-1
 spotify 1:1.1.42.622-2
 ttf-iosevka 3.7.1-1
 tty-clock 2.3-1
