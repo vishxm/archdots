@@ -7,4 +7,4 @@
 
 ## screenshots
 ![](https://github.com/vishxm/archdots/blob/2nd/scrots/screeshot1.png)
-![](https://github.com/vishxm/archdots/blob/2nd/scrots/screeshot2.png)
+![](https://github.com/vishxm/archdots/blob/2nd/scrots/screenshot2.png)
