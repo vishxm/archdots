@@ -6,7 +6,7 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias brght='xrandr --output eDP-1 --brightness'
+#PROMPT_COMMAND="echo"
 #long user host working dir
 #PS1='\[\033[01;36m\]\u ֍  \h \[\033[01;34m\]\w \[\033[01;33m\]» \[\033[00m\]'
 
@@ -17,7 +17,17 @@ alias brght='xrandr --output eDP-1 --brightness'
 #PS1='\[\033[01;32m\]\u at \[\033[01;35m\]\w \[\033[01;36m\]» \[\033[00m\]'
 #minimalest
 PS1='\[\033[01;32m\]\w \[\033[01;34m\]⟫ \[\033[00m\]'
+
+# dir at date \n command
+#PS1='\[\033[01;32m\]\w \[\033[00m\]at \[\033[01;33m\]\D{%H:%M} \n\[\033[01;34m\]⟫ \[\033[00m\]'
+
+# user at dir \n command
+#PS1='\n\[\033[01;35m\]\u \[\033[00m\]at \[\033[01;32m\]\w \n\[\033[01;34m\]⟫ \[\033[00m\]'
+#PS1='\n\[\033[01;35m\]\u \[\033[00m\]at \[\033[01;32m\]\w \n\[\033[01;34m\]» \[\033[00m\]'
 (cat .config/wpg/sequences &)
+#if [["$(tty)" = "/dev/tty1"]]; then
+#    pgrep i3 || startx
+#fi
 
 ##fzf
 source /usr/share/fzf/key-bindings.bash
