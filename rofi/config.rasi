@@ -1,7 +1,7 @@
 configuration {
   modi: "run,drun,window";
   width: 30;
-  font: "BlexMono Nerd Font 12";
+  font: "Fira Code 12";
   terminal: "alacritty";
   disable-history: false;
   sidebar-mode: true;
