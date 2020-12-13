@@ -1,94 +1,65 @@
 [bar/mybar]
 font-0 = Roboto Mono Nerd Font:size=12
-;font-1 = SFMono:size=10
-;font-2 = Inconsolata-Bold:size=12
-;font-3 = Iosevka-Bold:size=12
-margin-top = 10
-margin-bottom = 10
-modules-right = brightness palsa battery powermenu
-modules-center = i3
-fixed-center = true
-modules-left = date wireless-network
+radius = 6
+modules-right = wireless-network battery date
+modules-left = i3
 wm-restack = i3
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-wrapping-scroll = false
+override-redirect = true
 padding-left = 2
 padding-right = 2
 module-margin-left = 2
 module-margin-right = 2
-module-margin-top = 2
-module-margin-bottom = 2
-override-redirect = true
-width = 99%
+width = 98.5%
 height = 40
-offset-y = 9
-offset-x = 0.5%
+offset-y = 15
+offset-x = 0.75%
 background = #0f1212
 foreground = #e9e9e9
 bottom = true
 
-[global/wm]
-margin-top = 10
-margin-bottom = 0
+[settings]
+pseudo-transparency = true
 
-[module/backlight]
-type = internal/backlight
-card = intel_backlight
-enable-scroll = true
-fomart = <bar>
-bar-width = 10
-bar-indicator = |
-bar-fill = ─
-bar-empty = ─
+[bar/left]
+font-0 = Roboto Mono Nerd Font:size=12
+modules-left = i3
+wm-restack = i3
+override-redirect = true
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+width = 15%
+height = 40
+offset-y = 15
+offset-x = 0.75%
+background = #0f1212
+foreground = #e9e9e9
+bottom = true
+
+[bar/right]
+font-0 = Roboto Mono Nerd Font:size=12
+modules-right = wireless-network battery date
+wm-restack = i3
+override-redirect = true
+padding-left = 2
+padding-right = 2
+module-margin-left = 2
+module-margin-right = 2
+width = 25%
+height = 40
+offset-y = 15
+offset-x = 74.25%
+background = #0f1212
+foreground = #e9e9e9
+bottom = true
 
 [module/date]
 type = internal/date
 interval = 1.0
-date-alt = %A, %d %B '%y 
-time-alt = %H:%M:%S
-date = %d/%m/%y
+date = %a %d
 time = %H:%M
-label =  %date%   %time%
-label-foreground = #e9e9e9
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = false
-
-format-padding = 0
-
-label-close = ⏻
-label-open-foreground = #f07f7f
-label-open = ⏻
-label-close-foreground = #f07f7f
-label-separator = |
-label-separator-padding = 2
-label-separator-foreground = #98b9eb
-
-menu-0-0 = Sleep 
-menu-0-0-exec = menu-open-1
-menu-0-1 = Power Off
-menu-0-1-exec = menu-open-2
-menu-0-2 = Log Off
-menu-0-2-exec = menu-open-3
-
-menu-1-1 = Cancel
-menu-1-1-exec = menu-open-0
-menu-1-0 = Sleep
-menu-1-0-exec = i3lock && systemctl suspend
-
-menu-2-0 = Power off
-menu-2-0-exec = poweroff
-menu-2-1 = Cancel
-menu-2-1-exec = menu-open-0
-
-menu-3-0 = Log off
-menu-3-0-exec = pkill -KILL -u $USER
-menu-3-1 = Cancel
-menu-3-1-exec = menu-open-0
-
+label =  %time%  %date%
 
 [module/battery]
 type = internal/battery
@@ -100,111 +71,66 @@ format-discharging = <ramp-capacity>  <label-discharging>
 label-charging = %percentage%%
 label-charging-foreground = #9ef0a5
 label-discharging = %percentage%%
-;label-discharging-foreground = #ed9a9a
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-[module/i3-volume]
-type = custom/script
-tail = true
-label = %output%
-exec = ~/i3-volume/volume listen "%i %v %p\n"
-scroll-up = ~/i3-volume/volume up
-scroll-down = ~/i3-volume/volume down
-click-left = ~/i3-volume/volume mute
-click-right = exec pavucontrol &
-
-[module/spotify]
-type = custom/script
-interval = 1
-format = <label>
-exec = python ~/.config/polybar/polybar-spotify/spotify_status.py -f ' {artist} - {song}'
-label-foreground = #7ff088
-
-[module/brightness]
-type = internal/backlight
-card = intel_backlight
-format = <label>
-label =  %percentage%%
-label-foreground = #eef07f
-
-[module/palsa]
-type = internal/pulseaudio
-use-ui-max = true
-format-volume = <label-volume>
-label-volume =  %percentage%%
-label-volume-foreground = #7fe7f0
-label-muted = muted
-
 [module/wireless-network]
 type = internal/network
 interface = wlan0
-interval = 3.0
+interval = 2.0
 format-connected = <label-connected>
 label-connected =   %essid%
 format-disconnected = <label-disconnected>
-label-disconnected = no wifi
-
-[module/cpu]
-type = internal/cpu
-interval = 1
-format = <label> 
-label = CPU: %percentage%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format = <label>
-label = MEM: %gb_used%
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:20:...%
-
-[module/xworkspaces]
-type = internal/xworkspaces
-format = <label-state>
-
-label-monitor = %name%
-label-active = %icon% %name%
-
-label-occupied = %icon%
-
-label-urgent = %icon%
-
-label-empty = %icon%
+label-disconnected = :(
 
 [module/i3]
 type = internal/i3
 pin-workspaces = true
 index-sort = true
 enable-click = true
-enable-scroll = true
-wrapping-scroll = false
-
 label-focused = %index%
 label-focused-foreground = #e9e9e9
-;label-focused-background = #0f1212
 label-focused-underline = #94dae0
 label-focused-padding = 2
-
 label-unfocused = %index%
 label-unfocused-foreground = #555555
 label-unfocused-padding = 2
-
 label-visible = %index%
 label-visible-underline = #7ff088
 label-visible-padding = 2
-
 label-urgent = %index%
 label-urgent-foreground = #f07f7f
-label-urgent-background = #000f1212
+label-urgent-background = #0f1212
 label-urgent-padding = 2
 
-; Separator in between workspaces
-;label-separator = |
-;label-separator-padding = 1 
-;label-separator-foreground = #f07f7f
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+format-padding = 2
+label = %title%
+label-maxlen = 40
+
+[module/xws]
+type = internal/xworkspaces 
+pin-workspaces = true
+enable-click = true
+
+format = <label-state>
+label-monitor = %name%
+label-active = %icon% %name%
+label-active-foregorund = #e9e9e9
+label-active-underline = #7ff088
+label-active-padding = 4
+
+label-occupied = %icon%
+label-occupied-underline = #999
+label-occupied-foreground = #555
+
+label-urgent = %icon%
+label-urgent-foreground = #f07f7f
+label-urgent-padding = 4
+
+label-empty = %icon%

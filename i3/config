@@ -178,12 +178,18 @@ bindsym $mod+r mode "resize"
 
 smart_borders on
 
+# system info notif
+bindsym $mod+i exec /home/vishwas/scripts/sysinfo
+
 # betterlockscreen 
 bindsym $mod+l exec "i3lock"
 #bindsym $mod+l exec "i3lock"
 
-#
+# next workspace
 bindsym $mod+Tab workspace next
+
+# wallpaper
+exec feh --bg-fill ~/Pictures/digital3.jpg
 
 # polybar
 exec ~/.config/polybar/launch.sh 
@@ -196,9 +202,9 @@ exec --no-startup-id dunst
 
 ##playerctl 
 
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause --player=spotify
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous --player=spotify
-bindsym XF86AudioNext exec --no-startup-id playerctl next --player=spotify
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous 
+bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 ##brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
@@ -213,10 +219,10 @@ for_window [class="Lxappearance" instance="lxappearance"] floating enable
 assign [class="Spotify"] $ws10
 
 #borders
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 #inner outer gaps
 gaps inner 15
-gaps bottom 49
+gaps bottom 55
 
 set $mode_gaps Gaps : (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps : +|-|0 (local), Shift + +|-|0 (global)
@@ -256,9 +262,9 @@ mode "$mode_gaps_outer" {
 	bindsym Escape mode "default"
 }
 
-client.focused          #ead5a5 #ead5a5 #ffffff #131717   #737373
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #131717
-client.unfocused        #333333 #222222 #888888 #292d2e   #0f1212
+client.focused          #ead5a5 #ead5a5 #ffffff #131717   #9ef0a5
+client.focused_inactive #131717 #5f676a #131717 #131717   #0f1212
+client.unfocused        #ffffff #ffffff #ffffff #ffffff   #0f1212
 client.urgent           #2f343a #900000 #ffffff #900000   #ed9a9a
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #98b9eb
 
@@ -278,18 +284,18 @@ mode "$mode_prompt_ss" {
 }
 
 mode "$mode_type_ss_y" {
-    bindsym s --release exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f'"; mode "default"
-    bindsym w       exec "scrot -u -e 'xclip -selection clipboard -t image/png < $f'"; mode "default"
-    bindsym f       exec "scrot -e 'xclip -selection clipboard -t image/png < $f'"; mode "default"
+    bindsym s --release exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f'"; mode "default"; exec notify-send --urgency low "scrot" "screenshot taken\!"
+    bindsym w       exec "scrot -u -e 'xclip -selection clipboard -t image/png < $f'"; mode "default"; exec notify-send --urgency low "scrot" "screenshot taken\!"
+    bindsym f       exec "scrot -e 'xclip -selection clipboard -t image/png < $f'"; mode "default"; exec notify-send --urgency low "scrot" "screenshot taken\!"
     
     bindsym Return  mode "default"
     bindsym Escape  mode "default"
 }
 
 mode "$mode_type_ss_n" {
-    bindsym s --release exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f && rm $f'"; mode "default"
-    bindsym w       exec "scrot -u -e 'xclip -selection clipboard -t image/png < $f && rm $f'"; mode "default" 
-    bindsym f       exec "scrot -e 'xclip -selection clipboard -t image/png < $f && rm $f'" ; mode "default"  
+    bindsym s --release exec "scrot -s -e 'xclip -selection clipboard -t image/png < $f && rm $f'"; mode "default"; exec notify-send --urgency low "scrot" "screenshot taken\!"
+    bindsym w       exec "scrot -u -e 'xclip -selection clipboard -t image/png < $f && rm $f'"; mode "default"; exec notify-send --urgency low "scrot" "screenshot taken\!"  
+    bindsym f       exec notify-send --urgency low "scrot" "screenshot taken\!"; exec "scrot -e 'xclip -selection clipboard -t image/png < $f && rm $f'" ; mode "default" 
 
     bindsym Return  mode "default"
     bindsym Escape  mode "default"
